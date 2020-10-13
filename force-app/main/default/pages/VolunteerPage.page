@@ -1,0 +1,17 @@
+<apex:page >
+    <apex:includeLightning />
+    
+    <div id="lightning" />
+    
+    <script>
+    $Lightning.use("c:CarouselApp", function() {
+        $Lightning.createComponent("c:CarouselImage",
+                                   { currentUserName : "Press Me!" },
+                                   "lightning",
+                                   function(cmp) {
+                                       console.log("button was created");
+                                   }
+                                  );
+    });
+    </script>
+</apex:page>

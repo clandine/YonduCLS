@@ -1,0 +1,49 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="accId" type="string"/>
+    <aura:attribute name="textColor" type="string" default="black"/>
+    <aura:attribute name="currentUserName" type="string"/>
+    <aura:attribute name="firstImageSource" type="String" />
+    
+    
+    <html lang="en">
+        <head>
+            <Title>Carousel Image</Title>
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+            <ltng:require scripts="{!join(',', 
+                           $Resource.CarouselBootstrap, 
+                           $Resource.CarouselJquery)}"></ltng:require>
+            
+        </head>
+        <body>
+            <div class="container">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="{!$Resource.Image1}" alt="Los Angeles" style="width:100%"/>
+                        </div>
+                        
+                        <div class="item">
+                            <img src="{!$Resource.Image2}" alt="Chicago" style="width:100%;"/>
+                        </div>
+                        
+                        <div class="item">
+                            <img src="{!$Resource.Image3}" alt="New york" style="width:100%;"/>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </body>
+    </html> 
+</aura:component>
