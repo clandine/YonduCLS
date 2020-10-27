@@ -53,7 +53,7 @@ global with sharing class ContactResource1 {
         Id contactId = Id.valueOf(contactRequestURI.substring(contactRequestURI.lastIndexOf('/') + 1));
         //Initializing contact to delete 
         Contact delContact = new Contact(Id = contactId);
-        
+
         //Deleting contact
         try {
             delete delContact;
@@ -66,5 +66,32 @@ global with sharing class ContactResource1 {
 
         //Returning the response map in the response
         return responseMap;
+    }
+
+    //Put Method
+    @HTTPPut
+    global static Contact upsertContact(String firstName, String lastName, String birthDate, String leadSource) {
+        //Initializing the request parameter with the incoming request 
+        RestRequest contactRequest = RestContext.request;
+        //Getting the request URI
+        String contactRequestURI = contactRequest.requestURI;
+        //Getting the ID from the request URI 
+        String contactId = contactRequestURI.substring(contactRequestURI.lastIndexOf('/') + 1);
+        //Initializing the contact to upsert
+        Contact newContact = new Contact();
+        //Assigning contact Id to the new contact if contact ID from URI is not empty
+        if(!String.isEmpty(contactId)) {
+            newContact.Id = contactId;
+        }
+        newContact.FirstName = firstName;
+        newContact.LastName = lastName;
+        newContact.Birthdate = Date.parse(birthDate);
+        newContact.LeadSource = leadSource;
+        //Upserting the contact
+        upsert newContact;
+
+        //Returning the contact in the response
+        return newContact;
+
     }
 }
